@@ -5,7 +5,7 @@ import createMiddleware from "next-intl/middleware";
 const intlMiddleware = createMiddleware({
 	locales: ["en", "th"],
 
-	defaultLocale: "th",
+	defaultLocale: "en",
 });
 
 export default authMiddleware({
