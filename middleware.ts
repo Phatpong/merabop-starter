@@ -19,6 +19,7 @@ export default authMiddleware({
 		//
 		"/",
 		"/:locale",
+		"/:locale/api(.*)",
 		"/:locale/api/webhooks(.*)",
 		// ทำให้ path /:locale/ ? เป็นอะไรต่อก็จัดไป
 	],

@@ -1,5 +1,7 @@
 import { BottomNavigationBar } from "@/components/navigations/bottom-navigation-bar";
 import { TopNavigationBar } from "@/components/navigations/top-navigation";
+import { SheetProvider } from "@/components/providers/sheet-provider";
+import { ToasterProvider } from "@/components/providers/toast-provider";
 import { Logo } from "@/components/sites/logo";
 import { LocaleSwitcher } from "@/components/switchers/locale-switcher";
 import { ThemeSwitcher } from "@/components/switchers/theme-switcher";
@@ -41,7 +43,11 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 					<section className="flex flex-row">
 						{/* LEFT NAVIGATION BAR */}
 
-						<div className="flex flex-1 flex-col items-center bg-background min-h-screen">{children}</div>
+						<div className="flex flex-1 flex-col items-center bg-background min-h-screen">
+							<ToasterProvider />
+							<SheetProvider />
+							{children}
+						</div>
 
 						{/* RIGHT NAVIGATION BAR */}
 					</section>

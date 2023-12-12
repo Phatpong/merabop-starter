@@ -1,10 +1,22 @@
-import { useTranslations } from "next-intl";
+"use client";
 
-type HomePageProps = {};
+import { useStoreSheet } from "@/hooks/use-store-sheet";
+import { useEffect } from "react";
 
-const HomePage = ({}: HomePageProps) => {
-	const $t = useTranslations();
-	return <div>{$t("homepage")}</div>;
+type Props = {};
+
+const HomePage = (props: Props) => {
+	const sheet = useStoreSheet();
+
+	const onOpen = useStoreSheet((state) => state.onOpen);
+	const isOpen = useStoreSheet((state) => state.isOpen);
+
+	useEffect(() => {
+		if (!isOpen) {
+			onOpen();
+		}
+	}, [isOpen, onOpen]);
+	return <div>HomePage</div>;
 };
 
 export default HomePage;
