@@ -17,8 +17,8 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 	if (!locales.includes(locale as any)) notFound();
 
 	return (
-		<html lang={locale}>
+		<div lang={locale}>
 			<body>{children}</body>
-		</html>
+		</div>
 	);
 }

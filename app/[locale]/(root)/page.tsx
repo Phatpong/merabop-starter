@@ -1,22 +1,13 @@
-"use client";
-
-import { useStoreSheet } from "@/hooks/use-store-sheet";
-import { useEffect } from "react";
+import { UserFormRegister } from "@/components/form/user-form-register";
 
 type Props = {};
 
 const HomePage = (props: Props) => {
-	const sheet = useStoreSheet();
-
-	const onOpen = useStoreSheet((state) => state.onOpen);
-	const isOpen = useStoreSheet((state) => state.isOpen);
-
-	useEffect(() => {
-		if (!isOpen) {
-			onOpen();
-		}
-	}, [isOpen, onOpen]);
-	return <div>HomePage</div>;
+	return (
+		<div className="flex justify-center items-center min-h-screen ">
+			<UserFormRegister />
+		</div>
+	);
 };
 
 export default HomePage;

@@ -26,7 +26,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 	if (!locales.includes(locale as any)) notFound();
 
 	return (
-		<html lang={locale}>
+		<div lang={locale}>
 			<body>
 				<div className="flex flex-col">
 					<TopNavigationBar
@@ -58,6 +58,6 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 					/>
 				</div>
 			</body>
-		</html>
+		</div>
 	);
 }

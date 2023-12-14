@@ -19,115 +19,115 @@ datasource db {
 // }
 
 model User {
-  id                   String               @id @default(auto()) @map("_id") @db.ObjectId
-  clerk_id             String               @unique
-  username             String               @unique
-  first_name           String
-  last_name            String
-  phone_number         String
-  email                String               @unique
-  user_personal        UserPersonal?
-  user_addresses       UserAddress[]
-  user_family          UserFamily[]
-  user_education       UserEducation[]
-  user_experience      UserExperience[]
-  user_language_abilty UserLanguageAbility?
+  id           String @id @default(auto()) @map("_id") @db.ObjectId
+  // userId       String? @unique
+  username     String @unique
+  first_name   String
+  last_name    String
+  phone_number String
+  email        String @unique
+  // user_personal        UserPersonal?
+  // user_addresses       UserAddress[]
+  // user_family          UserFamily[]
+  // user_education       UserEducation[]
+  // user_experience      UserExperience[]
+  // user_language_abilty UserLanguageAbility?
   // user_special_ability UserSpecialAbility?
 }
 
-model UserPersonal {
-  id                   String   @id @default(auto()) @map("_id") @db.ObjectId
-  date_of_birth        DateTime
-  ethnic               String
-  nationality          String
-  religion             String
-  blood_group          String
-  identity_card_number String   @unique
-  height               Float
-  weight               Float
-  military_status      String
-  marital_status       String
-  gender               String
-  user                 User     @relation(fields: [user_id], references: [id])
-  user_id              String   @unique @db.ObjectId
-}
-
-model UserAddress {
-  id           String @id @default(auto()) @map("_id") @db.ObjectId
-  first_name   String
-  last_name    String
-  address_type String
-  address_name String
-  sub_district String
-  district     String
-  province     String
-  zipcode      String
-  country      String
-  user         User   @relation(fields: [user_id], references: [id])
-  user_id      String @db.ObjectId
-}
-
-model UserFamily {
-  id             String  @id @default(auto()) @map("_id") @db.ObjectId
-  responsibility String
-  first_name     String
-  last_name      String
-  age            Int
-  is_alived      Boolean @default(true)
-  user           User    @relation(fields: [user_id], references: [id])
-  user_id        String  @unique @db.ObjectId
-}
-
-model UserEducation {
-  id              String @id @default(auto()) @map("_id") @db.ObjectId
-  education_level String
-  institution     String
-  major           String
-  from_year       Int
-  to_year         Int
-  user            User   @relation(fields: [user_id], references: [id])
-  user_id         String @unique @db.ObjectId
-}
-
-model UserExperience {
-  id                    String @id @default(auto()) @map("_id") @db.ObjectId
-  business_name         String
-  business_address      String
-  job_description       String
-  phone_number          String
-  starting_job_position String
-  ending_job_position   String
-  ending_salary         Float
-  resignation_reason    String
-  start_working_year    Int
-  end_working_year      Int
-  user                  User   @relation(fields: [user_id], references: [id])
-  user_id               String @unique @db.ObjectId
-}
-
-model UserLanguageAbility {
-  id             String @id @default(auto()) @map("_id") @db.ObjectId
-  language       String
-  speaking_level String
-  writing_level  String
-  reading_level  String
-  user           User   @relation(fields: [user_id], references: [id])
-  user_id        String @unique @db.ObjectId
-}
-
-// model UserSpecialAbility {
-//   id                                                                      String  @id @default(auto()) @map("_id") @db.ObjectId
-//   typing                                                                  Boolean @default(true)
-//   typing_language                                                         String
-//   typing_speed                                                            Int
-//   computer                                                                String
-//   motercycle_license_number                                               Int
-//   driving_license_number                                                  Int
-//   office_machine                                                          String
-//   hobbies                                                                 String
-//   able_to_work_up_contry                                                  Boolean @default(false)
-//   able_to_work_foreign_countries                                          Boolean @default(false)
-//   agree_to_allow_the_company_to_change_position_and_duties_as_appropriate Boolean @default(false)
-//   user                                                                    User    @relation(fields: [user_id], references: [id])
-//   user_id                                                                 String  @unique @db.ObjectId
+// model UserPersonal {
+//   id                   String   @id @default(auto()) @map("_id") @db.ObjectId
+//   date_of_birth        DateTime
+//   ethnic               String
+//   nationality          String
+//   religion             String
+//   blood_group          String
+//   identity_card_number String   @unique
+//   height               Float
+//   weight               Float
+//   military_status      String
+//   marital_status       String
+//   gender               String
+//   user                 User     @relation(fields: [user_id], references: [id])
+//   user_id              String   @unique @db.ObjectId
 // }
+
+// model UserAddress {
+//   id           String @id @default(auto()) @map("_id") @db.ObjectId
+//   first_name   String
+//   last_name    String
+//   address_type String
+//   address_name String
+//   sub_district String
+//   district     String
+//   province     String
+//   zipcode      String
+//   country      String
+//   user         User   @relation(fields: [user_id], references: [id])
+//   user_id      String @db.ObjectId
+// }
+
+// model UserFamily {
+//   id             String  @id @default(auto()) @map("_id") @db.ObjectId
+//   responsibility String
+//   first_name     String
+//   last_name      String
+//   age            Int
+//   is_alived      Boolean @default(true)
+//   user           User    @relation(fields: [user_id], references: [id])
+//   user_id        String  @unique @db.ObjectId
+// }
+
+// model UserEducation {
+//   id              String @id @default(auto()) @map("_id") @db.ObjectId
+//   education_level String
+//   institution     String
+//   major           String
+//   from_year       Int
+//   to_year         Int
+//   user            User   @relation(fields: [user_id], references: [id])
+//   user_id         String @unique @db.ObjectId
+// }
+
+// model UserExperience {
+//   id                    String @id @default(auto()) @map("_id") @db.ObjectId
+//   business_name         String
+//   business_address      String
+//   job_description       String
+//   phone_number          String
+//   starting_job_position String
+//   ending_job_position   String
+//   ending_salary         Float
+//   resignation_reason    String
+//   start_working_year    Int
+//   end_working_year      Int
+//   user                  User   @relation(fields: [user_id], references: [id])
+//   user_id               String @unique @db.ObjectId
+// }
+
+// model UserLanguageAbility {
+//   id             String @id @default(auto()) @map("_id") @db.ObjectId
+//   language       String
+//   speaking_level String
+//   writing_level  String
+//   reading_level  String
+//   user           User   @relation(fields: [user_id], references: [id])
+//   user_id        String @unique @db.ObjectId
+// }
+
+// // model UserSpecialAbility {
+// //   id                                                                      String  @id @default(auto()) @map("_id") @db.ObjectId
+// //   typing                                                                  Boolean @default(true)
+// //   typing_language                                                         String
+// //   typing_speed                                                            Int
+// //   computer                                                                String
+// //   motercycle_license_number                                               Int
+// //   driving_license_number                                                  Int
+// //   office_machine                                                          String
+// //   hobbies                                                                 String
+// //   able_to_work_up_contry                                                  Boolean @default(false)
+// //   able_to_work_foreign_countries                                          Boolean @default(false)
+// //   agree_to_allow_the_company_to_change_position_and_duties_as_appropriate Boolean @default(false)
+// //   user                                                                    User    @relation(fields: [user_id], references: [id])
+// //   user_id                                                                 String  @unique @db.ObjectId
+// // }
