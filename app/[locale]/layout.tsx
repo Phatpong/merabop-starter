@@ -2,6 +2,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { NextIntlClientProvider, useMessages } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode, Suspense } from "react";
+import { Toaster } from "sonner";
 
 import { TanStackProviders } from "@/components/providers/tanstack-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
@@ -39,6 +40,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 								<div className="flex-1 flex-col items-center bg-background min-h-screen w-full px-4 py-4">
 									<TanStackProviders>{children}</TanStackProviders>
 								</div>
+								<Toaster />
 							</NextIntlClientProvider>
 						</ThemeProvider>
 					</body>

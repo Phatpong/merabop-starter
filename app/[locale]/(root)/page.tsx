@@ -1,11 +1,9 @@
-import { UserFormRegister } from "@/components/form/user-form-register";
+import { UserFormHook } from "@/components/form/user-form-hook";
 
-type Props = {};
-
-const HomePage = (props: Props) => {
+const HomePage = () => {
 	return (
-		<div className="flex justify-center items-center min-h-screen ">
-			<UserFormRegister />
+		<div className="flex justify-center items-center min-h-screen">
+			<UserFormHook />
 		</div>
 	);
 };
