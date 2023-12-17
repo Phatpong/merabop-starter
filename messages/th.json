@@ -9,5 +9,8 @@
 	"system mode": "โหมดระบบ",
 	"th": "ภาษาไทย",
 	"first name": "ชื่อจริง",
-	"last name": "นามสกุล"
+	"last name": "นามสกุล",
+	"country": "ประเทศ",
+	"address -": "ที่อยู่ -",
+	"address type": "บ้าน หรือ ที่ทำงาน"
 }

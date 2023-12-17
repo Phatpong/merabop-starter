@@ -1,5 +1,20 @@
 import { z } from "zod";
 
+const userAddressQuerySchema = z.array(
+	z.object({
+		first_name: z.string(),
+		last_name: z.string(),
+		address_type: z.string(),
+		address_name: z.string(),
+		sub_district: z.string(),
+		province: z.string(),
+		country: z.string(),
+		zipcode: z.string(),
+	})
+);
+
+type UserAddressQuerySchema = z.infer<typeof userAddressQuerySchema>;
+
 const userQuerySchema = z.object({
 	id: z.string(),
 	first_name: z.string(),
@@ -17,25 +32,34 @@ const userFormSchema = z.object({
 	username: z.string(),
 	email: z.string().email(),
 	phone_number: z.string(),
-	address: z.array(
+});
+
+type UserFormSchema = z.infer<typeof userFormSchema>;
+
+const userAddressFormSchema = z.object({
+	addresses: z.array(
 		z.object({
+			first_name: z.string(),
+			last_name: z.string(),
 			address_type: z.string(),
 			address_name: z.string(),
 			sub_district: z.string(),
 			district: z.string(),
 			province: z.string(),
-			zipcode: z.string(),
 			country: z.string(),
+			zipcode: z.string(),
 		})
 	),
 });
 
-type UserFormSchema = z.infer<typeof userFormSchema>;
+type UserAddressFormSchema = z.infer<typeof userAddressFormSchema>;
 
 export {
 	//  SCHEMA
+	userAddressFormSchema,
+	userAddressQuerySchema,
 	userFormSchema,
 	userQuerySchema,
 };
 
-export type { UserFormSchema, UserQuerySchema };
+export type { UserAddressFormSchema, UserAddressQuerySchema, UserFormSchema, UserQuerySchema };

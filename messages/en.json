@@ -9,5 +9,8 @@
 	"system mode": "System mode",
 	"th": "ภาษาไทย",
 	"first name": "First Name",
-	"last name": "Last Name"
+	"last name": "Last Name",
+	"country": "Country",
+	"address -": "Address -",
+	"address type": "Address Type"
 }

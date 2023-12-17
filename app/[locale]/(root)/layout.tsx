@@ -40,15 +40,13 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 						}
 					/>
 
-					<section className="flex flex-row">
+					<section>
 						{/* LEFT NAVIGATION BAR */}
-
-						<div className="flex flex-1 flex-col items-center bg-background min-h-screen">
+						<div>
 							<ToasterProvider />
 							<SheetProvider />
 							{children}
 						</div>
-
 						{/* RIGHT NAVIGATION BAR */}
 					</section>
 

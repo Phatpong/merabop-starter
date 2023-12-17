@@ -1,9 +1,9 @@
-import { UserFormHook } from "@/components/form/user-form-hook";
+import { UserFormRegister } from "@/components/form/user-form-register";
 
 const HomePage = () => {
 	return (
-		<div className="flex justify-center items-center min-h-screen">
-			<UserFormHook />
+		<div className="container flex justify-center items-center min-h-screen pt-12">
+			<UserFormRegister />
 		</div>
 	);
 };

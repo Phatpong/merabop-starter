@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { UserQuerySchema, type UserFormSchema } from "@/lib/schema/user-schema";
+import { UserAddressFormSchema, UserAddressQuerySchema, UserQuerySchema, type UserFormSchema } from "@/lib/schema/user-schema";
 
 const userQueryKeys = {
 	all: ["users"] as const,
@@ -19,4 +19,11 @@ const userQueryFn = {
 	},
 };
 
-export { userQueryFn, userQueryKeys };
+const userAddressQueryFn = {
+	createUserAdress: async (data: UserAddressFormSchema) => {
+		const response = await axios.post("/api/users/address", data);
+		return response.data as UserAddressQuerySchema;
+	},
+};
+
+export { userAddressQueryFn, userQueryFn, userQueryKeys };

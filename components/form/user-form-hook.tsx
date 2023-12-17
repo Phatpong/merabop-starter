@@ -6,218 +6,243 @@ import { useTranslations } from "next-intl";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
+import { CardAction } from "@/components/custom/card-action";
+import { ComboboxCountry } from "@/components/custom/combobox-country";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { userQueryFn } from "@/lib/queries-key/user-queries";
-import { userFormSchema, type UserFormSchema } from "@/lib/schema/user-schema";
+import { userAddressQueryFn } from "@/lib/queries-key/user-queries";
+import { UserAddressFormSchema, userFormSchema } from "@/lib/schema/user-schema";
 import { cn } from "@/lib/utils";
+import { ComboboxAddressType } from "../custom/combobox-address-type";
+import { TypographyH4, TypographyP } from "../typographies/typography";
 
 const UserFormHook = () => {
 	const $t = useTranslations();
 
-	const defaultValues: Partial<UserFormSchema> = {
-		first_name: "Phat",
-		last_name: "Mettaprasert",
-		email: "",
-		username: "",
-		phone_number: "",
-		address: [
-			{
-				address_name: "",
-				address_type: "",
-				country: "",
-				district: "",
-				province: "",
-				sub_district: "",
-				zipcode: "",
-			},
-		],
-	};
+	const defaultValues: Partial<UserAddressFormSchema> = {};
 
-	const form = useForm<UserFormSchema>({
+	const form = useForm<UserAddressFormSchema>({
 		resolver: zodResolver(userFormSchema),
 		defaultValues,
 		mode: "onChange",
 	});
 
 	const { fields, append, remove } = useFieldArray({
-		name: "address",
+		name: "addresses",
 		control: form.control,
 	});
 
-	const createUser = useMutation({
-		mutationFn: async (data: UserFormSchema) => userQueryFn.createUser(data),
+	const createUserAddress = useMutation({
+		mutationFn: async (data: UserAddressFormSchema) => userAddressQueryFn.createUserAdress(data),
 
 		onError: (error) => {
-			toast.error("failed to created userr");
+			toast.error("failed to created userAddress");
 			console.log(error);
 		},
 
 		onSuccess: (response) => {
 			form.reset();
-			toast.success("success to created user");
+			toast.success("success to created userAddress");
 			console.log(response);
 		},
 	});
 
-	const onSubmit = async (data: UserFormSchema) => {
+	const onSubmit = async (data: UserAddressFormSchema) => {
 		console.log(data);
-		createUser.mutate(data);
+		createUserAddress.mutate(data);
 	};
 
 	return (
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col space-y-6 px-2 py-4 w-full">
-				<div className="flex justify-between space-x-4">
-					{/* FIRST NAME */}
-					<FormField
-						control={form.control}
-						name="first_name"
-						render={({ field }) => (
-							<FormItem className="flex-1">
-								<FormLabel>{$t("first name")}</FormLabel>
-								<FormControl>
-									<Input
-										placeholder="First name"
-										{...field}
+				className="flex flex-col space-y-6 px-2 py-4 w-full h-full">
+				<Card>
+					<CardHeader>{$t("personal address")}</CardHeader>
+					<CardContent>
+						{fields.map((field, fieldIndex) => (
+							<Card
+								key={`${fieldIndex} - ${field.id}`}
+								className="mt-4">
+								<CardHeader>
+									<div className="flex">
+										<TypographyP className="flex flex-1">
+											{$t("address -")} {fieldIndex + 1}
+										</TypographyP>
+										<Button
+											size="icon"
+											type="button"
+											variant="ghost"
+											onClick={() => remove(fieldIndex !== 0)}>
+											<TypographyH4>x</TypographyH4>
+										</Button>
+									</div>
+								</CardHeader>
+
+								<CardContent className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.first_name`}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className={cn(fieldIndex !== 0)}>{$t("first name")}</FormLabel>
+												<FormControl>
+													<Input
+														placeholder="Phat..."
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
 									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-					{/* LAST NAME */}
-					<FormField
-						control={form.control}
-						name="last_name"
-						render={({ field }) => (
-							<FormItem className="flex-1">
-								<FormLabel>{$t("last name")}</FormLabel>
-								<FormControl>
-									<Input
-										placeholder="Last name"
-										{...field}
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.last_name`}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className={cn(fieldIndex !== 0)}>{$t("last name")}</FormLabel>
+												<FormControl>
+													<Input
+														placeholder="Mettaprasert..."
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
 									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/>
-				</div>
-
-				{/* USERNAME */}
-				<FormField
-					control={form.control}
-					name="username"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>{$t("Username")}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="example1998"
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				{/* EMAIL */}
-				<FormField
-					control={form.control}
-					name="email"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>{"Email"}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="example@email.com"
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				{/* PHONE NUMBER */}
-				<FormField
-					control={form.control}
-					name="phone_number"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>{$t("phone_number")}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="08x-xxxxxxx"
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				<div>
-					{fields.map((field, fieldIndex) => (
-						<div key={`${fieldIndex} - ${field.id}`}>
-							<FormField
-								control={form.control}
-								name={`address.${fieldIndex}.address_name`}
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className={cn(fieldIndex !== 0 && "sr-only")}>{$t("address_name")}</FormLabel>
-										<FormControl>
-											<Input
-												{...field}
-												placeholder="Address_name"
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name={`address.${fieldIndex}.address_type`}
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel className={cn(fieldIndex !== 0 && "sr-only")}>{$t("address_type")}</FormLabel>
-
-										<FormControl>
-											<Input
-												{...field}
-												placeholder="Address_type"
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-						</div>
-					))}
-					<Button
-						type="button"
-						variant="outline"
-						size="sm"
-						className="mt-2"
-						onClick={() => append({ address_name: "", address_type: "", country: "", district: "", province: "", sub_district: "", zipcode: "" })}>
-						Add more Details
-					</Button>
-					<Button
-						type="button"
-						variant="outline"
-						size="sm"
-						className="mt-2"
-						onClick={() => remove()}>
-						Delete details
-					</Button>
-				</div>
-				<Button>Submit</Button>
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.address_type`}
+										render={({ field }) => (
+											<FormItem>
+												<FormControl>
+													<ComboboxAddressType
+														form={form}
+														formLabel={$t("address type")}
+														fieldName={field.name}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.address_name`}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className={cn(fieldIndex !== 0)}>{$t("address name")}</FormLabel>
+												<FormControl>
+													<Input
+														placeholder="chemmin working..."
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.country`}
+										render={({ field }) => (
+											<FormItem>
+												<FormControl>
+													<ComboboxCountry
+														form={form}
+														formLabel={$t("country")}
+														fieldName={field.name}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.sub_district`}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className={cn(fieldIndex !== 0)}>{$t("sub district")}</FormLabel>
+												<FormControl>
+													<Input
+														placeholder="sub district..."
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.district`}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className={cn(fieldIndex !== 0)}>{$t("district")}</FormLabel>
+												<FormControl>
+													<Input
+														placeholder="district..."
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.province`}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className={cn(fieldIndex !== 0)}>{$t("province")}</FormLabel>
+												<FormControl>
+													<Input
+														placeholder="province..."
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+									<FormField
+										control={form.control}
+										name={`addresses.${fieldIndex}.zipcode`}
+										render={({ field }) => (
+											<FormItem>
+												<FormLabel className={cn(fieldIndex !== 0)}>{$t("zipcode")}</FormLabel>
+												<FormControl>
+													<Input
+														placeholder="zipcode..."
+														{...field}
+													/>
+												</FormControl>
+												<FormMessage />
+											</FormItem>
+										)}
+									/>
+								</CardContent>
+							</Card>
+						))}
+					</CardContent>
+					{/* DETAILS - FOOTER */}
+					<CardAction
+						href="#"
+						detailAction={$t("user personal address")}>
+						<Button
+							type="button"
+							variant="outline"
+							onClick={() => append({ first_name: "", last_name: "", address_name: "", address_type: "", country: "", province: "", sub_district: "", district: "", zipcode: "" })}>
+							Add more Details
+						</Button>
+						<Button>Submit</Button>
+					</CardAction>
+				</Card>
 			</form>
 		</Form>
 	);
