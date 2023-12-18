@@ -1,16 +1,26 @@
 {
+	"address -": "Address -",
+	"address name": "Address name",
+	"address type": "Address type",
 	"homepage": "Homepage",
 	"dark": "Dark",
 	"dark mode": "Dark mode",
+	"district": "District",
 	"en": "English",
 	"light": "Light",
 	"light mode": "Light mode",
+	"sub district": "Sub district",
 	"system": "System",
 	"system mode": "System mode",
 	"th": "ภาษาไทย",
 	"first name": "First Name",
 	"last name": "Last Name",
 	"country": "Country",
-	"address -": "Address -",
-	"address type": "Address Type"
+	"learn more about": "Learn more about",
+	"personal address": "Personal address",
+	"personal information": "Personal Information",
+	"province": "Province",
+	"user personal address": "User personal address",
+	"user personal information": "User personal information",
+	"zipcode": "Zipcode"
 }

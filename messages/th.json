@@ -1,16 +1,26 @@
 {
+	"address -": "ที่อยู่ -",
+	"address name": "ชื่อที่อยู่",
+	"address type": "บ้าน หรือ ที่ทำงาน",
 	"homepage": "หน้าแรก",
 	"dark": "โหมดมืด",
 	"dark mode": "โหมดมืด",
+	"district": "เขต",
 	"en": "ภาษาอังกฤษ",
 	"light": "โหมดสว่าง",
 	"light mode": "โหมดสว่าง",
+	"sub district": "แขวง/ตำบล",
 	"system": "โหมดระบบ",
 	"system mode": "โหมดระบบ",
 	"th": "ภาษาไทย",
 	"first name": "ชื่อจริง",
 	"last name": "นามสกุล",
 	"country": "ประเทศ",
-	"address -": "ที่อยู่ -",
-	"address type": "บ้าน หรือ ที่ทำงาน"
+	"learn more about": "เรียนรู้เพิ่มเติมเกี่ยวกับ",
+	"personal address": "ที่อยู่ส่วนตัว",
+	"personal information": "ข้อมูลส่วนตัว",
+	"province": "จังหวัด",
+	"user personal address": "ที่อยู่ส่วนตัวของผู้ใช้",
+	"user personal information": "ข้อมูลส่วนตัวของผู้ใช้",
+	"zipcode": "รหัสไปรษณีย์"
 }

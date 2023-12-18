@@ -21,7 +21,7 @@ const userQueryFn = {
 
 const userAddressQueryFn = {
 	createUserAdress: async (data: UserAddressFormSchema) => {
-		const response = await axios.post("/api/users/address", data);
+		const response = await axios.post(`/api/users/addresses`, data);
 		return response.data as UserAddressQuerySchema;
 	},
 };

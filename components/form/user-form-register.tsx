@@ -31,8 +31,6 @@ const UserFormRegister = () => {
 		},
 	});
 
-	// TODO :: TOASTER SONNER
-	// TODO :: ROUTER TO USER ADDRESS
 	const createUser = useMutation({
 		mutationFn: async (data: UserFormSchema) => userQueryFn.createUser(data),
 
@@ -42,16 +40,18 @@ const UserFormRegister = () => {
 		},
 
 		onSuccess: (response) => {
-			form.reset();
+			// form.reset();
+			// console.log(response);
+			const userId = response.id;
+			console.log(userId);
 			toast.success("success to created user");
-			console.log(response);
+			router.push(`/user-address/${userId}`);
 		},
 	});
 
 	const onSubmit = async (data: UserFormSchema) => {
 		console.log(data);
 		createUser.mutate(data);
-		router.push("/user-address");
 	};
 	// TODO :: RESPONSIVE MOBILE , MOBILE LIKE DESIGN
 	// TODO :: JITTA MOBILE

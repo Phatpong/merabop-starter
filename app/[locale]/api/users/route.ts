@@ -1,5 +1,6 @@
-import { prismadb } from "@/lib/prismadb";
 import { NextResponse } from "next/server";
+
+import { prismadb } from "@/lib/prismadb";
 
 export async function POST(req: Request) {
 	try {
@@ -22,7 +23,7 @@ export async function POST(req: Request) {
 				phone_number,
 			},
 		});
-
+		console.log(createdUser);
 		return NextResponse.json(createdUser);
 	} catch (error) {
 		console.log("[USER_POST]", error);

@@ -7,16 +7,16 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import { CardAction } from "@/components/custom/card-action";
+import { ComboboxAddressType } from "@/components/custom/combobox-address-type";
 import { ComboboxCountry } from "@/components/custom/combobox-country";
+import { TypographyH4, TypographyP } from "@/components/typographies/typography";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { userAddressQueryFn } from "@/lib/queries-key/user-queries";
-import { UserAddressFormSchema, userFormSchema } from "@/lib/schema/user-schema";
+import { UserAddressFormSchema, userAddressFormSchema } from "@/lib/schema/user-schema";
 import { cn } from "@/lib/utils";
-import { ComboboxAddressType } from "../custom/combobox-address-type";
-import { TypographyH4, TypographyP } from "../typographies/typography";
 
 const UserFormHook = () => {
 	const $t = useTranslations();
@@ -24,7 +24,7 @@ const UserFormHook = () => {
 	const defaultValues: Partial<UserAddressFormSchema> = {};
 
 	const form = useForm<UserAddressFormSchema>({
-		resolver: zodResolver(userFormSchema),
+		resolver: zodResolver(userAddressFormSchema),
 		defaultValues,
 		mode: "onChange",
 	});
@@ -50,7 +50,7 @@ const UserFormHook = () => {
 	});
 
 	const onSubmit = async (data: UserAddressFormSchema) => {
-		console.log(data);
+		console.log(data.addresses[0]);
 		createUserAddress.mutate(data);
 	};
 
@@ -75,7 +75,7 @@ const UserFormHook = () => {
 											size="icon"
 											type="button"
 											variant="ghost"
-											onClick={() => remove(fieldIndex !== 0)}>
+											onClick={() => remove(fieldIndex)}>
 											<TypographyH4>x</TypographyH4>
 										</Button>
 									</div>
