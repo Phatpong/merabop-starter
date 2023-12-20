@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 
 import { TanStackProviders } from "@/components/providers/tanstack-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { cn } from "@/lib/utils";
 
 // Can be imported from a shared config
 const locales = ["en", "th"];
@@ -28,7 +29,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 				lang={locale}
 				suppressHydrationWarning={true}>
 				<Suspense fallback={null}>
-					<body>
+					<body className={cn("bg-blue-100")}>
 						<ThemeProvider
 							attribute="class"
 							defaultTheme="system"
@@ -37,7 +38,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 							<NextIntlClientProvider
 								locale={locale}
 								messages={messages}>
-								<div className="flex-1 flex-col items-center bg-background min-h-screen w-full px-4 py-4">
+								<div>
 									<TanStackProviders>{children}</TanStackProviders>
 								</div>
 								<Toaster />

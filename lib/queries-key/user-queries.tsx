@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { UserAddressFormSchema, UserAddressQuerySchema, UserQuerySchema, type UserFormSchema } from "@/lib/schema/user-schema";
+import { UserAddressFormSchema, UserAddressQuerySchema, UserIdentityFormSchema, UserIdentityQuerySchema, UserQuerySchema, type UserFormSchema } from "@/lib/schema/user-schema";
 
 const userQueryKeys = {
 	all: ["users"] as const,
@@ -11,6 +11,13 @@ const userQueryKeys = {
 };
 
 const userApiEndpoint = "/api/users";
+
+const userIdentityQueryFn = {
+	createIdentityUser: async (data: UserIdentityFormSchema) => {
+		const response = await axios.post(`/api/users/identity`, data);
+		return response.data as UserIdentityQuerySchema;
+	},
+};
 
 const userQueryFn = {
 	createUser: async (data: UserFormSchema) => {
@@ -26,4 +33,4 @@ const userAddressQueryFn = {
 	},
 };
 
-export { userAddressQueryFn, userQueryFn, userQueryKeys };
+export { userAddressQueryFn, userIdentityQueryFn, userQueryFn, userQueryKeys };

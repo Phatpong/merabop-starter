@@ -17,15 +17,22 @@ datasource db {
 //   created_at DateTime @default(now())
 //   updated_at DateTime @updatedAt
 // }
+model UserIdentity {
+  id                   String @id @default(auto()) @map("_id") @db.ObjectId
+  identity_card_number String @unique
+  user                 User?
+}
 
 model User {
-  id             String        @id @default(auto()) @map("_id") @db.ObjectId
-  username       String        @unique
-  first_name     String
-  last_name      String
-  phone_number   String
-  email          String        @unique
-  user_addresses UserAddress[]
+  id               String        @id @default(auto()) @map("_id") @db.ObjectId
+  username         String        @unique
+  first_name       String
+  last_name        String
+  phone_number     String
+  email            String        @unique
+  user_addresses   UserAddress[]
+  useridentity     UserIdentity  @relation(fields: [user_id_identity], references: [id])
+  user_id_identity String        @unique @db.ObjectId
   // user_personal        UserPersonal?
   // user_family          UserFamily[]
   // user_education       UserEducation[]

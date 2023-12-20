@@ -7,24 +7,16 @@ export async function POST(req: Request) {
 		const { userId } = auth();
 		const body = await req.json();
 
-		const { first_name, last_name, username, email, phone_number, user_id_identity } = body;
-
+		const { identity_card_number } = body;
 		if (!userId) {
 			return new NextResponse("Unauthorized", { status: 403 });
 		}
 
-		const createdUser = await prismadb.user.create({
-			data: {
-				first_name,
-				last_name,
-				username,
-				email,
-				phone_number,
-				user_id_identity,
-			},
+		const createdIdentityUser = await prismadb.userIdentity.create({
+			data: { identity_card_number },
 		});
-		console.log(createdUser);
-		return NextResponse.json(createdUser);
+		console.log(createdIdentityUser);
+		return NextResponse.json(createdIdentityUser);
 	} catch (error) {
 		console.log("[USER_POST]", error);
 		return new NextResponse("Internal error", { status: 500 });

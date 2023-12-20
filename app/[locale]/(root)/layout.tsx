@@ -1,3 +1,5 @@
+import { HomeButton } from "@/components/mobile/button-mobile";
+import { MobileNavigation } from "@/components/mobile/mobile-navigation";
 import { BottomNavigationBar } from "@/components/navigations/bottom-navigation-bar";
 import { TopNavigationBar } from "@/components/navigations/top-navigation";
 import { SheetProvider } from "@/components/providers/sheet-provider";
@@ -40,7 +42,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 						}
 					/>
 
-					<section>
+					<section className="flex flex-row">
 						{/* LEFT NAVIGATION BAR */}
 						<div>
 							<ToasterProvider />
@@ -53,6 +55,10 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 					<BottomNavigationBar
 						left={<Logo />}
 						right={<ThemeSwitcher />}
+					/>
+					<MobileNavigation
+						left={<HomeButton />}
+						center={<UserButton />}
 					/>
 				</div>
 			</body>

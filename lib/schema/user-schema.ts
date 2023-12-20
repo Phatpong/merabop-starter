@@ -1,5 +1,12 @@
 import { z } from "zod";
 
+const userIdentityQuerySchema = z.object({
+	id: z.string(),
+	identity_card_number: z.string(),
+});
+
+type UserIdentityQuerySchema = z.infer<typeof userIdentityQuerySchema>;
+
 const userAddressQuerySchema = z.object({
 	addresses: z.array(
 		z.object({
@@ -12,6 +19,7 @@ const userAddressQuerySchema = z.object({
 			province: z.string(),
 			country: z.string(),
 			zipcode: z.string(),
+			user_id: z.string(),
 		})
 	),
 });
@@ -28,6 +36,11 @@ const userQuerySchema = z.object({
 });
 
 type UserQuerySchema = z.infer<typeof userQuerySchema>;
+
+const userIdentityFormSchema = z.object({
+	identity_card_number: z.string(),
+});
+type UserIdentityFormSchema = z.infer<typeof userIdentityFormSchema>;
 
 const userFormSchema = z.object({
 	first_name: z.string(),
@@ -51,6 +64,7 @@ const userAddressFormSchema = z.object({
 			province: z.string(),
 			country: z.string(),
 			zipcode: z.string(),
+			user_id: z.string(),
 		})
 	),
 });
@@ -76,7 +90,9 @@ export {
 	userAddressFormSchema,
 	userAddressQuerySchema,
 	userFormSchema,
+	userIdentityFormSchema,
+	userIdentityQuerySchema,
 	userQuerySchema,
 };
 
-export type { UserAddressFormSchema, UserAddressQuerySchema, UserFormSchema, UserQuerySchema };
+export type { UserAddressFormSchema, UserAddressQuerySchema, UserFormSchema, UserIdentityFormSchema, UserIdentityQuerySchema, UserQuerySchema };

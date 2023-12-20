@@ -17,8 +17,10 @@ import { Input } from "@/components/ui/input";
 import { userAddressQueryFn } from "@/lib/queries-key/user-queries";
 import { UserAddressFormSchema, userAddressFormSchema } from "@/lib/schema/user-schema";
 import { cn } from "@/lib/utils";
+import { useParams } from "next/navigation";
 
 const UserFormHook = () => {
+	const params = useParams<{ id: string }>();
 	const $t = useTranslations();
 
 	const defaultValues: Partial<UserAddressFormSchema> = {};
@@ -50,8 +52,8 @@ const UserFormHook = () => {
 	});
 
 	const onSubmit = async (data: UserAddressFormSchema) => {
-		console.log(data.addresses[0]);
 		createUserAddress.mutate(data);
+		console.log(data);
 	};
 
 	return (
@@ -61,6 +63,7 @@ const UserFormHook = () => {
 				className="flex flex-col space-y-6 px-2 py-4 w-full h-full">
 				<Card>
 					<CardHeader>{$t("personal address")}</CardHeader>
+
 					<CardContent>
 						{fields.map((field, fieldIndex) => (
 							<Card
@@ -237,7 +240,7 @@ const UserFormHook = () => {
 						<Button
 							type="button"
 							variant="outline"
-							onClick={() => append({ first_name: "", last_name: "", address_name: "", address_type: "", country: "", province: "", sub_district: "", district: "", zipcode: "" })}>
+							onClick={() => append({ first_name: "", last_name: "", address_name: "", address_type: "", country: "", province: "", sub_district: "", district: "", zipcode: "", user_id: params.id })}>
 							Add more Details
 						</Button>
 						<Button>Submit</Button>

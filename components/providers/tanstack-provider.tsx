@@ -17,7 +17,7 @@ const TanStackProviders = ({ children }: ProviderProps) => {
 
 			<ReactQueryDevtools
 				initialIsOpen={false}
-				buttonPosition="bottom-left"
+				buttonPosition="top-left"
 			/>
 		</QueryClientProvider>
 	);

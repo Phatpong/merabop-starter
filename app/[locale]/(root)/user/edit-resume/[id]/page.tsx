@@ -1,6 +1,6 @@
 import { UserFormHook } from "@/components/form/user-form-hook";
 
-const UserAdressPage = () => {
+const UserIdPage = () => {
 	return (
 		<div className="container flex justify-center items-center min-h-screen pt-12">
 			<UserFormHook />
@@ -8,4 +8,4 @@ const UserAdressPage = () => {
 	);
 };
 
-export default UserAdressPage;
+export default UserIdPage;

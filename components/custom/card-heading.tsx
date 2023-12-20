@@ -11,11 +11,11 @@ type CardActionProps = HTMLAttributes<"card"> & {
 	children: ReactNode;
 };
 
-const CardAction = ({ href, detailAction, children }: CardActionProps) => {
+const CardHeading = ({ href, detailAction, children }: CardActionProps) => {
 	const $t = useTranslations();
 	return (
 		<CardFooter className="flex justify-between items-center border-t p-4">
-			<div className="gap-1 items-center">
+			<div className="md:flex gap-1 items-center">
 				<TypographyP>{$t("learn more about")}</TypographyP>
 				<Link
 					href={href}
@@ -28,4 +28,4 @@ const CardAction = ({ href, detailAction, children }: CardActionProps) => {
 	);
 };
 
-export { CardAction };
+export { CardHeading };
