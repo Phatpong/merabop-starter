@@ -7,7 +7,7 @@ type TopNavigationBarProps = React.HTMLAttributes<HTMLHeadElement> & {
 };
 const TopNavigationBar = ({ left, center, right, className }: TopNavigationBarProps) => {
 	return (
-		<header className={cn("fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60", className)}>
+		<header className={cn("z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ", className)}>
 			<div className="flex flex-row items-center justify-between px-4 h-14">
 				{/* LEFT */}
 				<div className="flex">{left ? left : <Placeholder placeholder="Logo" />}</div>

@@ -44,7 +44,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 
 					<section className="flex flex-row">
 						{/* LEFT NAVIGATION BAR */}
-						<div>
+						<div className="flex flex-1 flex-col bg-background ">
 							<ToasterProvider />
 							<SheetProvider />
 							{children}

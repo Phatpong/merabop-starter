@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 import { TypographyP } from "@/components/typographies/typography";
 import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { userQueryFn } from "@/lib/queries-key/user-queries";
@@ -60,7 +60,7 @@ const UserFormRegister = () => {
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="flex flex-col space-y-6 px-2 py-4 mx-2">
-				<Card className="border-none">
+				<Card className="w-full">
 					<CardHeader>
 						<div className="items-center">
 							<CardTitle className="truncate">{$t("personal information")}</CardTitle>
@@ -69,96 +69,97 @@ const UserFormRegister = () => {
 							</CardDescription>
 						</div>
 					</CardHeader>
+					<CardContent>
+						{/* FIRST NAME */}
+						<FormField
+							control={form.control}
+							name="first_name"
+							render={({ field }) => (
+								<FormItem className="flex-1">
+									<FormLabel>{$t("first name")}</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="Phat..."
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+						{/* LAST NAME */}
+						<FormField
+							control={form.control}
+							name="last_name"
+							render={({ field }) => (
+								<FormItem className="flex-1">
+									<FormLabel>{$t("last name")}</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="Mettaprasert..."
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						{/* USERNAME */}
+						<FormField
+							control={form.control}
+							name="username"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{$t("username")}</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="example1998"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						{/* EMAIL */}
+						<FormField
+							control={form.control}
+							name="email"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{$t("email")}</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="example@email.com"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+
+						{/* PHONE NUMBER */}
+						<FormField
+							control={form.control}
+							name="phone_number"
+							render={({ field }) => (
+								<FormItem>
+									<FormLabel>{$t("phone number")}</FormLabel>
+									<FormControl>
+										<Input
+											placeholder="06X-XXXX-XXX"
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
+						/>
+					</CardContent>
 				</Card>
-				{/* FIRST NAME */}
-				<FormField
-					control={form.control}
-					name="first_name"
-					render={({ field }) => (
-						<FormItem className="flex-1">
-							<FormLabel>{$t("first name")}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="Phat..."
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				{/* LAST NAME */}
-				<FormField
-					control={form.control}
-					name="last_name"
-					render={({ field }) => (
-						<FormItem className="flex-1">
-							<FormLabel>{$t("last name")}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="Mettaprasert..."
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				{/* USERNAME */}
-				<FormField
-					control={form.control}
-					name="username"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>{$t("username")}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="example1998"
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				{/* EMAIL */}
-				<FormField
-					control={form.control}
-					name="email"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>{$t("email")}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="example@email.com"
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
-				{/* PHONE NUMBER */}
-				<FormField
-					control={form.control}
-					name="phone_number"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>{$t("phone number")}</FormLabel>
-							<FormControl>
-								<Input
-									placeholder="06X-XXXX-XXX"
-									{...field}
-								/>
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-
 				<Button type="submit">{$t("submit")}</Button>
 			</form>
 		</Form>

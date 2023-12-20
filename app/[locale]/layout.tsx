@@ -29,7 +29,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 				lang={locale}
 				suppressHydrationWarning={true}>
 				<Suspense fallback={null}>
-					<body className={cn("bg-blue-100")}>
+					<body className={cn("bg-background antialiased")}>
 						<ThemeProvider
 							attribute="class"
 							defaultTheme="system"
