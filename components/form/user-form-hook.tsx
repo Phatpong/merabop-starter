@@ -6,12 +6,11 @@ import { useTranslations } from "next-intl";
 import { useFieldArray, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { CardAction } from "@/components/custom/card-action";
 import { ComboboxAddressType } from "@/components/custom/combobox-address-type";
 import { ComboboxCountry } from "@/components/custom/combobox-country";
 import { TypographyH4, TypographyP } from "@/components/typographies/typography";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { userAddressQueryFn } from "@/lib/queries-key/user-queries";
@@ -60,10 +59,16 @@ const UserFormHook = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col space-y-6 px-2 py-4 w-full h-full">
-				<Card>
-					<CardHeader>{$t("personal address")}</CardHeader>
-
+				className="flex flex-col space-y-6 items-center justify-center">
+				<Card className="w-[600px] h-full">
+					<CardHeader>
+						<div>
+							<CardTitle>{$t("personal address")}</CardTitle>
+							<CardDescription>
+								<TypographyP className="line-clamp-2">{"organizing your customers help you create quicker qtoes and keep track of them easier"}</TypographyP>
+							</CardDescription>
+						</div>
+					</CardHeader>
 					<CardContent>
 						{fields.map((field, fieldIndex) => (
 							<Card
@@ -84,7 +89,7 @@ const UserFormHook = () => {
 									</div>
 								</CardHeader>
 
-								<CardContent className="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
+								<CardContent className="grid grid-cols-1 w-full h-full">
 									<FormField
 										control={form.control}
 										name={`addresses.${fieldIndex}.first_name`}
@@ -234,18 +239,16 @@ const UserFormHook = () => {
 						))}
 					</CardContent>
 					{/* DETAILS - FOOTER */}
-					<CardAction
-						href="#"
-						detailAction={$t("user personal address")}>
+					<CardFooter className="items-center justify-center">
 						<Button
 							type="button"
 							variant="outline"
 							onClick={() => append({ first_name: "", last_name: "", address_name: "", address_type: "", country: "", province: "", sub_district: "", district: "", zipcode: "", user_id: params.id })}>
 							Add more Details
 						</Button>
-						<Button>Submit</Button>
-					</CardAction>
+					</CardFooter>
 				</Card>
+				<Button>Submit</Button>
 			</form>
 		</Form>
 	);

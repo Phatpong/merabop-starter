@@ -1,9 +1,8 @@
-import { CardResume } from "@/components/custom/card-resume";
-import { LeftNavigationBar } from "@/components/navigations/left-navigation-bar";
-import { Button } from "@/components/ui/button";
-import { HomeIcon } from "lucide-react";
 import { notFound } from "next/navigation";
-import { ReactNode } from "react";
+import { type ReactNode } from "react";
+
+import { CardNavigation } from "@/components/custom/card-leftnavigation";
+import { CardResume } from "@/components/custom/card-resume";
 
 // Can be imported from a shared config
 const locales = ["en", "th"];
@@ -22,36 +21,7 @@ export default function LocaleLayout({ children, params: { locale } }: LocaleLay
 	return (
 		<div lang={locale}>
 			<div className="flex">
-				<LeftNavigationBar
-					left={
-						<>
-							<Button
-								className="w-full"
-								variant="ghost">
-								<HomeIcon />
-								Profile
-							</Button>
-							<Button
-								className="w-full"
-								variant="ghost">
-								<HomeIcon />
-								Edit Resume
-							</Button>
-							<Button
-								className="w-full"
-								variant="ghost">
-								<HomeIcon />
-								Privacy Settings
-							</Button>
-							<Button
-								className="w-full"
-								variant="ghost">
-								<HomeIcon />
-								Account Settings
-							</Button>
-						</>
-					}
-				/>
+				<CardNavigation />
 				<CardResume />
 				<div className="flex flex-1 items-center justify-center">{children}</div>
 			</div>

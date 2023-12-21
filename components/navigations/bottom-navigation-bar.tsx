@@ -8,7 +8,7 @@ type BottomNavigationBarProps = React.HTMLAttributes<HTMLElement> & {
 
 const BottomNavigationBar = ({ left, right, className }: BottomNavigationBarProps) => {
 	return (
-		<footer className={cn("hidden md:block fixed bottom-0 z-10 w-full border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ", className)}>
+		<footer className={cn("hidden md:block  bottom-0 z-10 w-full border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ", className)}>
 			<div className="flex flex-row items-center justify-between px-4 h-14">
 				{/* LEFT */}
 				<div className="flex">{left ? left : <Placeholder placeholder="Logo" />}</div>

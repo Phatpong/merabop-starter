@@ -1,4 +1,4 @@
-import { AwardIcon, Briefcase, GlobeIcon, GraduationCapIcon, ScrollTextIcon, ShrinkIcon, UserIcon, UsersIcon } from "lucide-react";
+import { AwardIcon, Briefcase, GlobeIcon, GraduationCapIcon, LockKeyholeIcon, PenSquareIcon, ScrollTextIcon, SettingsIcon, ShrinkIcon, UserIcon, UsersIcon } from "lucide-react";
 
 export const formConfig = [
 	{
@@ -8,37 +8,60 @@ export const formConfig = [
 	},
 	{
 		icon: Briefcase,
-		name: "preferred jobs",
-		href: "/user/resume-profile/edit-resume/preferred-jobs",
+		name: "user address",
+		href: "/user/resume-profile/edit-resume/user-address",
 	},
 	{
 		icon: GraduationCapIcon,
 		name: "education",
-		href: "/",
+		href: "#",
 	},
 	{
 		icon: ScrollTextIcon,
 		name: "work experience",
-		href: "/",
+		href: "#",
 	},
 	{
 		icon: AwardIcon,
 		name: "training certificate",
-		href: "/",
+		href: "#",
 	},
 	{
 		icon: GlobeIcon,
 		name: "language skills",
-		href: "/",
+		href: "#",
 	},
 	{
 		icon: ShrinkIcon,
 		name: "orther skills",
-		href: "/",
+		href: "#",
 	},
 	{
 		icon: UsersIcon,
 		name: "reference",
-		href: "/",
+		href: "#",
+	},
+];
+
+export const navigationLink = [
+	{
+		icon: UsersIcon,
+		name: "profile",
+		href: "#",
+	},
+	{
+		icon: PenSquareIcon,
+		name: "edit resume",
+		href: "#",
+	},
+	{
+		icon: LockKeyholeIcon,
+		name: "privacy settings",
+		href: "#",
+	},
+	{
+		icon: SettingsIcon,
+		name: "account settings",
+		href: "#",
 	},
 ];

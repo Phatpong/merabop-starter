@@ -5,6 +5,7 @@ type TopNavigationBarProps = React.HTMLAttributes<HTMLHeadElement> & {
 	center?: React.ReactNode;
 	right?: React.ReactNode;
 };
+
 const TopNavigationBar = ({ left, center, right, className }: TopNavigationBarProps) => {
 	return (
 		<header className={cn("z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 ", className)}>
