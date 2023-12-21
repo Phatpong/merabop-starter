@@ -52,15 +52,13 @@ const UserFormRegister = () => {
 		console.log(data);
 		createUser.mutate(data);
 	};
-	// TODO :: RESPONSIVE MOBILE , MOBILE LIKE DESIGN
-	// TODO :: JITTA MOBILE
 
 	return (
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="flex flex-col space-y-6 px-2 py-4 mx-2">
-				<Card className="w-full">
+				className="flex flex-col space-y-6 items-center justify-center">
+				<Card className="w-[600px] h-full">
 					<CardHeader>
 						<div className="items-center">
 							<CardTitle className="truncate">{$t("personal information")}</CardTitle>
@@ -104,7 +102,6 @@ const UserFormRegister = () => {
 								</FormItem>
 							)}
 						/>
-
 						{/* USERNAME */}
 						<FormField
 							control={form.control}
@@ -122,7 +119,6 @@ const UserFormRegister = () => {
 								</FormItem>
 							)}
 						/>
-
 						{/* EMAIL */}
 						<FormField
 							control={form.control}
@@ -140,7 +136,6 @@ const UserFormRegister = () => {
 								</FormItem>
 							)}
 						/>
-
 						{/* PHONE NUMBER */}
 						<FormField
 							control={form.control}
